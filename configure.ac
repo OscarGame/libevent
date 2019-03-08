@@ -478,7 +478,7 @@ fi
 AC_MSG_CHECKING(for F_SETFD in fcntl.h)
 AC_EGREP_CPP(yes,
 [
-#define _GNU_SOURCE
+#define _GNU_SOURCE 1
 #include <fcntl.h>
 #ifdef F_SETFD
 yes
@@ -667,7 +667,7 @@ AC_CHECK_SIZEOF(off_t)
 AC_CHECK_SIZEOF(time_t)
 
 AC_CHECK_TYPES([struct in6_addr, struct sockaddr_in6, sa_family_t, struct addrinfo, struct sockaddr_storage], , ,
-[#define _GNU_SOURCE
+[#define _GNU_SOURCE 1
 #include <sys/types.h>
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
@@ -857,7 +857,7 @@ if test x$enable_gcc_warnings != xno && test "$GCC" = "yes"; then
     # for minheap-internal.h related code.
     CFLAGS="$CFLAGS -Wno-unused-function"
 
-    # clang on macosx emits warnigns for each directory specified which
+    # clang on macosx emits warnings for each directory specified which
     # isn't "used" generating a lot of build noise (typically 3 warnings
     # per file
     case "$host_os" in

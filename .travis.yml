@@ -3,10 +3,15 @@ os:
   - osx
 sudo: false
 dist: trusty
+osx_image: xcode10.1
 
 branches:
   except:
   - /.*appveyor.*/
+  - /.*win.*/
+  - /.*mingw.*/
+  - /.*freebsd.*/
+  - /.*bitrise.*/
 
 git:
   quiet: true
@@ -50,7 +55,7 @@ before_install:
   - export TIMEOUT=50
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       if [ "$CC" == "gcc" ]; then
-        export CC=$(ls -t /usr/local/bin/gcc-?.?);
+        export CC=$(ls /usr/local/Cellar/gcc/*/bin/gcc-?);
       fi
 
       export OPENSSL_ROOT=$(echo /usr/local/Cellar/openssl/*);
@@ -82,6 +87,7 @@ addons:
     - openssl
     - lcov
     - libtool
+    - gcc
 
 
 script:
